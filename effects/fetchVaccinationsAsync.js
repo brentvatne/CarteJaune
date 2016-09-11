@@ -9,18 +9,11 @@ import { KEY } from '../constants/storage';
  * Retrieves the vaccinations from the presistent storage.
  */
 export default async function fetchVaccinationsAsync({dispatch}) {
-  let result;
-
   try {
-    result = await AsyncStorage.getItem(KEY);
+    let result = await AsyncStorage.getItem(KEY);
+    let vaccinations = result ? fromJS(JSON.parse(result)) : OrderedMap();
+    dispatch(fetchVaccinationsSuccess(vaccinations));
   } catch(e) {
     dispatch(fetchVaccinationsFailure());
-  }
-
-  if (result === null) {
-    dispatch(fetchVaccinationsSuccess(OrderedMap()));
-  } else {
-    let vaccinations = fromJS(JSON.parse(result));
-    dispatch(fetchVaccinationsSuccess(vaccinations));
   }
 }
