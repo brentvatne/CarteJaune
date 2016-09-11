@@ -1,15 +1,15 @@
 import { createStore, applyMiddleware } from 'redux';
-import sagaMiddleware from 'redux-saga';
+import { effectsMiddleware } from 'redux-effex';
 import createLogger from 'redux-logger';
 import reducer from '../reducers';
-import sagas from '../sagas';
+import effects from '../effects';
 
 const loggerMiddleware = createLogger({
   stateTransformer: state => state.toJS(),
 });
 
 const createStoreWithMiddleware = applyMiddleware(
-  sagaMiddleware(sagas),
+  effectsMiddleware(effects),
   loggerMiddleware
 )(createStore);
 

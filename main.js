@@ -7,12 +7,14 @@ import {
 import { Provider } from 'react-redux';
 import { Scene, Router } from 'react-native-router-flux';
 import configureStore from './store/configureStore';
+import fetchVaccinations from './actions/fetchVaccinations';
 import ChooseVaccine from './containers/ChooseVaccine';
 import ChooseDate from './containers/ChooseDate';
 import List from './containers/List';
 import Detail from './containers/Detail';
 
 const store = configureStore();
+store.dispatch(fetchVaccinations());
 
 // eslint-disable-next-line react/prefer-stateless-function
 class ProviderWrapper extends Component {

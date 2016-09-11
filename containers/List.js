@@ -19,6 +19,7 @@ const selectors = {
 
 // eslint-disable-next-line react/prefer-stateless-function
 class ListContainer extends Component {
+
   render() {
     return <List {...this.props} />;
   }
